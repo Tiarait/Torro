@@ -1,0 +1,19 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:title="Rutor"
+        android:key="rutor_furl"
+        android:defaultValue="http://new-rutor.org"/>
+    <EditTextPreference
+        android:title="Zooqle"
+        android:key="zooqle_furl"
+        android:defaultValue="https://zooqle.unblocked.vet"/>
+    <EditTextPreference
+        android:title="Bitru"
+        android:key="bitru_furl"
+        android:defaultValue="http://bitru.org"/>
+    <EditTextPreference
+        android:title="Tpb"
+        android:key="tpb_furl"
+        android:defaultValue="https://tpb.zone"/>
+</PreferenceScreen>

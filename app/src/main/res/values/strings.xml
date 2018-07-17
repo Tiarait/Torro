@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name" translatable="false">TORRO</string>
+    <string name="app_version">Версия: 0.1</string>
+    <string name="app_email" translatable="false">tiarait.dev@gmail.com</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">by Tiar</string>
+
+
+    <string name="REFRESH">Обновить</string>
+    <string name="CANCEL">Отменить</string>
+    <string name="ADDED">Добавленно</string>
+    <string name="REMOVE">Удалено</string>
+    <string name="TO_REMOVE">Удалить?</string>
+    <string name="NOT_READY">Не готово</string>
+    <string name="YES">Да</string>
+    <string name="START_DOWNLOAD">Загрузка начата</string>
+    <string name="PRESS_TO_EXIT">Нажмите назад для выхода</string>
+    <string name="EXIT">Выйти</string>
+    <string name="SELECT">Выберите</string>
+    <string name="NO_CONNECT">Ошибка интернет соединения…</string>
+    <string name="RETRY">Повторить</string>
+
+    <string name="GENERAL">Общее</string>
+    <string name="CHECK_UPDATE">Проверить обновление</string>
+    <string name="FEEDBACK">Обратная связь</string>
+    <string name="DONATE">Поддержка приложения</string>
+    <string name="UI">Интерфейс</string>
+    <string name="OTHER">Другое</string>
+    <string name="FOR_QUERY">По запросу</string>
+    <string name="NO_FOUND">ничего не найдено.</string>
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Настройки</string>
+    <string name="pref_header_info">Информация</string>
+    <string name="pref_header_settings">Настройки</string>
+    <string name="pref_header_web">Ссылки</string>
+
+    <string name="pref_title_catalog_ui">Выбор отображаемого в каталоге</string>
+    <string-array name="pref_list_catalog_ui">
+        <item>Название</item>
+        <item>Описание</item>
+        <item>Размер</item>
+        <item>Сиды и пиры</item>
+        <item>Торренты</item>
+        <item>Магнеты</item>
+    </string-array>
+    <string-array name="pref_values_catalog_ui">
+        <item>title</item>
+        <item>desc</item>
+        <item>size</item>
+        <item>sid lich</item>
+        <item>torrent</item>
+        <item>magnet</item>
+    </string-array>
+
+    <string name="pref_title_ui_category">Отображение категорий</string>
+    <string name="pref_desc_ui_category">Выберите вариант отображения категорий.</string>
+    <string-array name="pref_ui_category">
+        <item>Текстом</item>
+        <item>Иконками</item>
+    </string-array>
+    <string-array name="pref_val_ui_category">
+        <item>text</item>
+        <item>icon</item>
+    </string-array>
+
+    <string-array name="pref_list_base_catalog">
+        <item>Zooqle</item>
+        <item>Tpb</item>
+        <item>Bitru</item>
+        <item>Rutor</item>
+    </string-array>
+
+    <string name="pref_title_start_category">Стартовый каталог</string>
+    <string name="pref_desc_start_category">Выберите каталог с которого будет стартовать приложение.</string>
+
+    <string name="pref_title_fullscreen" translatable="false">FullScreen mode</string>
+    <string name="pref_desk_fullscreen" translatable="false">Требует перезапуск приложения</string>
+
+    <string name="pref_title_auto_update">Проверка обновлений</string>
+    <string name="pref_desc_auto_update">Поверка обновлений при запуске приложения.</string>
+    <string name="pref_title_exit">Кнопка выхода</string>
+
+</resources>

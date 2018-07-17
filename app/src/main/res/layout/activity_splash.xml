@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splash_content"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <TextView
+        android:id="@+id/splash_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.95"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="50sp"
+        android:textColor="#bfbfbf"/>
+
+    <TextView
+        android:id="@+id/splash_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="by tiarait.dev@gmail.com"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="#bfbfbf" />
+
+</LinearLayout>

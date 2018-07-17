@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/fragm_coord"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_catalog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:paddingRight="2dp"
+        android:paddingLeft="2dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/t_no_found"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorWhite"/>
+    <LinearLayout
+        android:id="@+id/progressL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/pb"/>
+    </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

@@ -5,11 +5,13 @@ package dev.tiar.torro.items
  */
 class Statics {
     companion object {
-        var urlZooqle = "https://zooqle.unblocked.vet"
-        var urlBitru = "http://bitru.org"
-        var urlTpb = "https://tpb.zone"
-        var urlRutor = "http://new-rutor.org"
-        var urlNnm = "http://nnmclub.to"
+        var urlZooqle = "https://zooqle.unblocked.vet"//+
+        var urlBitru = "http://bitru.org"//+
+        var urlTpb = "https://thepiratebay.cr"//+
+        var urlRutor = "http://new-rutor.org"//+
+        var urlNnm = "http://nnmclub.to"//+
+        var urlFileek = "http://fileek.com"
+        var urlUnderverse = "http://underverse.in"
         var curUrl = urlZooqle
         var curCategoryUrl = ""
         var curSortUrl = ""

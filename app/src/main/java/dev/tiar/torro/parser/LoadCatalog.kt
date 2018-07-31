@@ -40,8 +40,70 @@ class LoadCatalog (private val url: String,
             url.startsWith(Statics.urlTpb) -> parseTpb(getData(url))
             url.startsWith(Statics.urlRutor) -> parseRutor(getData(url))
             url.startsWith(Statics.urlNnm) -> parseNnm(getData(url))
+            url.startsWith(Statics.urlFileek) -> parseFileek(getData(url))
         }
         return null
+    }
+
+    private fun parseFileek(data: Document?) {
+        if (data != null) {
+            Log.d(TAG, "Start")
+            if (data.html().contains("files_list")) {
+                val tableList = data.select("#files_list.block")
+                for (entry in tableList) {
+                    defVar()
+                    source = "Fileek"
+                    if (entry.html().contains("ico")) {
+                        type = entry.select(".ico img").attr("src")
+                        if (type.contains("/"))
+                            type = type.split("/").last()
+                    }
+                    if (entry.html().contains("name")) {
+                        title = entry.select(".name").text()
+                        link  = url
+                    }
+                    if (entry.html().contains("download-btn")){
+                        var id = entry.select(".download-btn").attr("id")
+                        if (id.contains("dw_"))
+                            id = id.split("dw_")[1]
+                        linkTorrent = Statics.urlFileek +
+                                "/index.php?r=download/ajaxlinkcheck&id=$id&action=%2Fsearch&ismagnet=0"
+                        val t = getData(linkTorrent)
+                        if (t != null && t.text().contains("link\":\""))
+                            linkTorrent = t.text().split("link\":\"")[1]
+                        linkTorrent = linkTorrent.replace("\\", "")
+                                .replace("\"", "").replace("}", "")
+                        if (linkTorrent.trim().isEmpty())
+                            linkTorrent = "error"
+
+                        linkMagnet = "error"
+                    }
+
+                    if (entry.html().contains("count")) {
+                        description = entry.select(".count").text()
+                    }
+                    if (entry.html().contains("size")) {
+                        size = entry.select(".size").first().text()
+                    }
+                    sid = "x"
+                    lich = "x"
+                    if (title != "error" && sid != "error" && sid != "0") {
+                        item.title.add(title)
+                        item.description.add(description.replace("error", ""))
+                        item.sid.add(sid)
+                        item.lich.add(lich)
+                        item.source.add(source)
+                        item.size.add(size.replace("error", " "))
+                        item.type.add(type)
+                        item.link.add(link)
+                        item.linkMagnet.add(linkMagnet)
+                        item.linkTorrent.add(linkTorrent)
+                    }
+                }
+            } else
+                Statics.nextPage = false
+        }else
+            Statics.nextPage = false
     }
 
     private fun parseNnm(data: Document?) {
@@ -52,19 +114,38 @@ class LoadCatalog (private val url: String,
                 for (entry in tableList) {
                     defVar()
                     source = "NNM"
-					type = entry.select("td[align='center'] img").attr("title")
+                    if (entry.html().contains("class=\"gen\""))
+					    type = entry.select(".gen").text().replace("Трекер:", "").trim()
+
+                    when {
+                        type.contains("Книги") -> type = "книги"
+                        type.contains("Apple") -> type = "apple"
+                        type.contains("Android") -> type = "android"
+                        type.contains("Мобильные устройства") -> type = "mobile"
+                        type.contains("Архив") -> type = "архив"
+                    }
+
                     if (entry.html().contains("genmed topictitle")) {
                         title = entry.select(".genmed.topictitle").text()
                         link  = Statics.urlNnm + "/" + entry.select(".genmed.topictitle").attr("href")
                     }
 					if (entry.html().contains("download.php?id")){
-                        linkTorrent = Statics.urlRutor + "/" + entry.select("a[href^='download.php?id']").attr("href")
-						linkMagnet = "http://tparser.org/magnet.php?t=14" + linkTorrent.split("id=")[1]
+                        linkTorrent = Statics.urlNnm + "/forum/" + entry.select("a[href^='download.php?id']").attr("href")
+						//linkMagnet = "http://tparser.org/magnet.php?t=14" + linkTorrent.split("id=")[1]
 					}
-						
+                    if (entry.html().contains("Рейтинг"))
+                        description = "Рейтинг: " + entry.select("td[title='Рейтинг'] u").text()+" "
+                    if (entry.html().contains("gensmall opened")) {
+                        description += entry.select(".gensmall.opened").text()
+                    }
+                    if(description != "error") description = description.replace("error", "")
                     if (entry.html().contains("gensmall")) {
                         size = entry.select("td.gensmall").first().text()
-                        description = entry.select("td.gensmall").last().text()
+						if(size.contains(" ")) {
+                            size = if (size.split(" ").size > 1)
+                                size.split(" ")[1] + " " + size.split(" ")[2]
+                            else size.split(" ")[1]
+                        }
                     }
                     sid = if (entry.html().contains("Seeders"))
                         entry.select("td[title='Seeders']").text() else "0"
@@ -89,6 +170,7 @@ class LoadCatalog (private val url: String,
         }else
             Statics.nextPage = false
     }
+
     private fun parseRutor(data: Document?) {
         if (data != null) {
             Log.d(TAG, "Start")
@@ -101,15 +183,23 @@ class LoadCatalog (private val url: String,
                     if (entry.html().contains("/torrent/")) {
                         title = entry.select("a[href^='/torrent/']").text()
                         link  = Statics.urlRutor + entry.select("a[href^='/torrent/']").attr("href")
-						linkMagnet = "http://tparser.org/magnet.php?t=12" + link.split("torrent/")[1].split("/")[0]
-                    }
+						}
+
                     if (entry.html().contains("align=\"right\"")) {
                         size = entry.select("td[align='right']").last().text()
                         description = entry.select("td").first().text()
                     }
                     if (entry.html().contains("downgif")) {
                         linkTorrent = entry.select(".downgif").attr("href")
+                        if (!linkTorrent.contains(Statics.urlRutor))
+                            linkTorrent = Statics.urlRutor + linkTorrent
+                        //linkTorrent = linkTorrent.replace("http://d.rutor.info", Statics.urlRutor)
                     }
+                    linkMagnet = if (entry.html().contains("magnet:")) {
+                        entry.select("a[href^='magnet:']").attr("href")
+                    } else "error"
+                    //else "http://tparser.org/magnet.php?t=12" + link.split("torrent/")[1].split("/")[0]
+
                     sid = if (entry.html().contains("green"))
                         entry.select(".green").text().trim() else "0"
                     lich = if (entry.html().contains("red"))
@@ -302,8 +392,13 @@ class LoadCatalog (private val url: String,
 
     private fun getData(url: String): Document? {
         return try {
-            Log.d(TAG, "getData: get connected to $url")
-            Jsoup.connect(url).timeout(10000).ignoreContentType(true).get()
+            var u = url
+            if (url.startsWith("http://cameleo.xyz/r?url=")){
+                u = "http://cameleo.xyz/r?url=" + url.split("/r?url=")[1]
+                        .replace(":","%3A").replace("/","%2F")
+            }
+            Log.d(TAG, "getData: get connected to $u")
+            Jsoup.connect(u).timeout(10000).ignoreContentType(true).get()
         } catch (e: Exception) {
             Statics.nextPage = false
             Log.d(TAG, "getData: connected false to $url")

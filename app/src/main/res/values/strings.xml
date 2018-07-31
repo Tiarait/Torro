@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name" translatable="false">TORRO</string>
-    <string name="app_version">Версия: 0.1</string>
+    <string name="app_version">Версия: 1.21</string>
     <string name="app_email" translatable="false">tiarait.dev@gmail.com</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">by Tiar</string>
+
+    <string name="update_t">Доступно обновление приложения - желаете обновиться?</string>
+    <string name="update_d">Если вы согласны - вы будете перенаправлены на форум 4pda, где сможете скачать последнюю версию.</string>
 
 
     <string name="REFRESH">Обновить</string>
@@ -71,6 +74,8 @@
         <item>Tpb</item>
         <item>Bitru</item>
         <item>Rutor</item>
+        <item>Nnm</item>
+        <!--<item>Fileek</item>-->
     </string-array>
 
     <string name="pref_title_start_category">Стартовый каталог</string>

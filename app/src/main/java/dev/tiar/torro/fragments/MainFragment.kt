@@ -31,7 +31,7 @@ data class MainFragment(private val query: String) : Fragment() {
     private lateinit var rv: RecyclerView
     private lateinit var pb: LinearLayout
     private lateinit var cl: CoordinatorLayout
-    private lateinit var noFound: TextView
+    private lateinit var searchCount: TextView
     var itemTorrent = ItemTorrent()
     private var curPage = 1
 
@@ -43,17 +43,23 @@ data class MainFragment(private val query: String) : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_main, container, false)
         rv = view.findViewById(R.id.rv_catalog) as RecyclerView
         pb = view.findViewById(R.id.progressL) as LinearLayout
-        noFound = view.findViewById(R.id.t_no_found) as TextView
+        searchCount = view.findViewById(R.id.t_search) as TextView
         cl = view.findViewById(R.id.fragm_coord) as CoordinatorLayout
-
+        searchCount.text = "$query: загрузка..."
         rv.layoutManager = GridLayoutManager(context, 1)
         val adapter = object : MainAdapter(context) {
+            override fun getSwipeLayoutResourceId(position: Int): Int {
+                TODO("not implemented")
+            }
+
+            @SuppressLint("SetTextI18n")
             override fun complate(count : Int) {
                 if (count == 0) {
-                    noFound.text = getString(R.string.FOR_QUERY) + " \"$query\" " +
+                    searchCount.text = getString(R.string.FOR_QUERY) + " \"$query\" " +
                             getString(R.string.NO_FOUND)
-                    noFound.visibility = View.VISIBLE
-                } else noFound.visibility = View.GONE
+                } else {
+                    searchCount.text = "$query: $count совпадений."
+                }
             }
 
             override fun snackbar(string: String) {
@@ -62,7 +68,6 @@ data class MainFragment(private val query: String) : Fragment() {
             }
             override fun load() {
                 if (Statics.nextPage) {
-                    noFound.visibility = View.GONE
                     curPage++
                     onPage()
                     Log.d(ContentValues.TAG, "load: cur_page - $curPage")
@@ -75,29 +80,37 @@ data class MainFragment(private val query: String) : Fragment() {
     }
 
     private fun onPage() {
-        noFound.visibility = View.GONE
         pb.visibility = View.VISIBLE
         val url = when {
-            Statics.curUrl.contains("zooqle") -> Statics.urlZooqle +
+            Statics.curUrl.contains(Statics.urlZooqle) -> Statics.urlZooqle +
                     "/search?pg=$curPage&q=${query.replace(" ", "+")}" +
                     "${ Statics.curCategoryUrl}&v=t${ Statics.curSortUrl}"
-            Statics.curUrl.contains("bitru") -> Statics.urlBitru +
+            Statics.curUrl.contains(Statics.urlBitru) -> Statics.urlBitru +
                     "/browse.php?page=$curPage&tmp=${Statics.curCategoryUrl}${Statics.curSortUrl}" +
                     "&s=${query.replace(" ", "+")}"
-            Statics.curUrl.contains("tpb") -> Statics.urlTpb +
+            Statics.curUrl.contains(Statics.urlTpb) -> Statics.urlTpb +
                     "/search/${query.replace(" ", "+")}" +
                     "/${curPage - 1}/7/${Statics.curCategoryUrl}/"
-            Statics.curUrl.contains("rutor") -> {
-					val c = if(Statics.curCategoryUrl.isEmpty()) "0" else Statics.curCategoryUrl
-					val s = if(Statics.curSortUrl.isEmpty()) "0" else Statics.curSortUrl
-					Statics.urlRutor +
-						"/search/${curPage - 1}/$c/000/$s/" +
-						"${query.replace(" ", "%20")}/"}
-            Statics.curUrl.contains("nnm") -> {
-					val c = if(Statics.curCategoryUrl.isEmpty()) "0" else Statics.curCategoryUrl
-					val s = if(Statics.curSortUrl.isEmpty()) "0" else Statics.curSortUrl
-					val q = if(curPage == 1) query.replace(" ", "%20") else "\""
-					Statics.urlNnm + "/forum/tracker.php?nm=$q"}
+            Statics.curUrl.contains(Statics.urlRutor) -> {
+                val c = if(Statics.curCategoryUrl.isEmpty()) "0" else Statics.curCategoryUrl
+                val s = if(Statics.curSortUrl.isEmpty()) "0" else Statics.curSortUrl
+                Statics.urlRutor + "/search/${curPage - 1}/$c/000/$s/" +
+                        "${query.replace(" ", "%20")}/"}
+            Statics.curUrl.contains(Statics.urlNnm) -> {
+                val c = if(Statics.curCategoryUrl.isEmpty()) "" else Statics.curCategoryUrl
+                val s = if(Statics.curSortUrl.isEmpty()) "" else Statics.curSortUrl
+                val q = if(curPage == 1) query.replace(" ", "%20") else "\""
+                Statics.urlNnm + "/forum/tracker.php?nm=$q&sd=1&shc=1&shf=-1&sha=-1&shr=1$c$s"}
+            Statics.curUrl.contains(Statics.urlFileek) -> {
+                val c = if(Statics.curCategoryUrl.isEmpty()) "" else "&ft%5B%5D=${Statics.curCategoryUrl}"
+                val q = query.replace(" ", "%20")
+                val s = if(Statics.curSortUrl.isEmpty()) "" else Statics.curSortUrl
+                Statics.urlFileek + "/search/?q=$q$s$c&page=$curPage"}
+            Statics.curUrl.contains(Statics.urlUnderverse) -> {
+                val c = if(Statics.curCategoryUrl.isEmpty()) "" else "&ft%5B%5D=${Statics.curCategoryUrl}"
+                val q = query.replace(" ", "+")
+                val s = if(Statics.curSortUrl.isEmpty()) "" else Statics.curSortUrl
+                Statics.urlUnderverse + "/tracker.php?nm=$q$s$c&page=$curPage"}
             else -> ""
         }
 

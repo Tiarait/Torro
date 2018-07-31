@@ -35,26 +35,27 @@
                     app:popupTheme="@style/AppTheme.AppBarOverlay" />
 
             </android.support.design.widget.AppBarLayout>
-
             <FrameLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
                 <include layout="@layout/item_list" />
             </FrameLayout>
-            <TextView
-                android:id="@+id/t_start"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/t_s"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Воспользуйтесь поиском для начала"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:padding="8dp"
-                android:gravity="center"
-                android:textColor="@color/colorWhite"/>
-
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDarken"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:text="Воспользуйтесь поиском для начала"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CoordinatorLayout>
 
@@ -70,6 +71,13 @@
             android:background="@color/colorPrimaryDark"
             app:headerLayout="@layout/nav_header_main"
             app:menu="@menu/activity_main_drawer" />
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end">
+            <include layout="@layout/nav_header_sort"/>
+        </android.support.design.widget.NavigationView>
     </android.support.v4.widget.DrawerLayout>
 
 

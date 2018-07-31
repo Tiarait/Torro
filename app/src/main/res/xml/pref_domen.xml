@@ -15,5 +15,14 @@
     <EditTextPreference
         android:title="Tpb"
         android:key="tpb_furl"
-        android:defaultValue="https://tpb.zone"/>
+        android:defaultValue="https://thepiratebay.cr"/>
+    <EditTextPreference
+        android:title="NNM"
+        android:key="nnm_furl"
+        android:defaultValue="http://nnmclub.to"/>
+    <EditTextPreference
+        android:title="Fileek"
+        android:visibility="gone"
+        android:key="fileek_furl"
+        android:defaultValue="http://fileek.com"/>
 </PreferenceScreen>

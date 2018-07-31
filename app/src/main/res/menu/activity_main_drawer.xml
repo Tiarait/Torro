@@ -28,6 +28,15 @@
                 android:id="@+id/nav_bitru"
                 android:icon="@drawable/ic_menu_web"
                 android:title="Bitru" />
+            <item
+                android:id="@+id/nav_nnm"
+                android:icon="@drawable/ic_menu_web"
+                android:title="NNM" />
+            <item
+                android:id="@+id/nav_fileek"
+                android:visible="false"
+                android:icon="@drawable/ic_menu_web"
+                android:title="Fileek" />
         </group>
     </menu></item>
     <item android:title="Выход"><menu>

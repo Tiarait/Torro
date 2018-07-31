@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:paddingTop="24dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    <LinearLayout
+        android:id="@+id/viewCategory"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:background="@drawable/rounding_primary"
+        android:layout_marginTop="16dp">
+        <TextView
+            android:id="@+id/textViewS1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorPink"
+            android:textStyle="bold"
+            android:text="Категории"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        <ListView
+            android:id="@+id/listViewCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/viewSort"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:background="@drawable/rounding_primary"
+        android:layout_marginTop="16dp">
+        <TextView
+            android:id="@+id/textViewS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorPink"
+            android:textStyle="bold"
+            android:text="Сортировать по"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        <ListView
+            android:id="@+id/listViewSort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnViewOk"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:textColor="@color/colorPink"
+
+        android:text="Применить"
+        android:background="@drawable/rounding_primary"/>
+</LinearLayout>

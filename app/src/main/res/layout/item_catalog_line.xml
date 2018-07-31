@@ -5,7 +5,11 @@
     android:background="@color/colorPrimaryDark"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
+    <View
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPink"/>
     <LinearLayout
         android:id="@+id/lineView"
         android:background="@color/colorPrimaryDark"
@@ -37,19 +41,55 @@
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 android:text="Title"/>
-            <TextView
-                android:id="@+id/t_desc_post"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="3"
-                android:padding="10dp"
-                android:gravity="center_vertical"
-                android:ellipsize="end"
-                android:textSize="15sp"
-                android:textColor="@color/colorDarkWhite"
-                android:text="Description"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/t_desc_post"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:maxLines="3"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorDarkWhite"
+                    android:text="Description"/>
+                <LinearLayout
+                    android:id="@+id/l_sid_lich2"
+                    android:padding="10dp"
+                    android:layout_width="105dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/t_sid_post2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:background="@drawable/rounding_left"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:text="9999"/>
+                    <TextView
+                        android:id="@+id/t_lich_post2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:gravity="center"
+                        android:background="@drawable/rounding_right"
+                        android:lines="1"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:text="9999"/>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/right_block"
             android:layout_width="105dp"
             android:layout_height="match_parent"
             android:minHeight="80dp"
@@ -108,7 +148,7 @@
     <View
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="@color/colorPink"/>
 
 </LinearLayout>

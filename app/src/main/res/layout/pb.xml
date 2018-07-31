@@ -5,7 +5,6 @@
     <ProgressBar
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:indeterminate="true"
-        android:background="@color/colorPrimary"
         android:indeterminateOnly="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -11,7 +11,7 @@ import android.support.design.widget.Snackbar
 import android.view.MenuItem
 import dev.tiar.torro.R
 import dev.tiar.torro.items.Statics
-
+import dev.tiar.torro.updater.Update
 
 
 /**
@@ -88,8 +88,8 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
             val btnUpdate = findPreference("update")
             btnUpdate.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                //                val update = Update(activity)
-//                update.execute()
+                val upd = Update(activity)
+                upd.execute()
                 true
             }
 
@@ -194,6 +194,10 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             tpbUrl.summary = preference.getString("tpb_furl", Statics.urlTpb)
             val bitruUrl = findPreference("bitru_furl") as EditTextPreference
             bitruUrl.summary = preference.getString("bitru_furl", Statics.urlBitru)
+            val fileekUrl = findPreference("fileek_furl") as EditTextPreference
+            fileekUrl.summary = preference.getString("fileek_furl", Statics.urlFileek)
+            val nnmUrl = findPreference("nnm_furl") as EditTextPreference
+            nnmUrl.summary = preference.getString("nnm_furl", Statics.urlNnm)
         }
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
